@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #070b13;
+  --surface: #0d1527;
+  --surface-2: #131e36;
+  --border: #1e2a40;
+  --border-strong: #2d3d5a;
+  --text: #f1f5f9;
+  --text-2: #c2cddc;
+  --text-3: #94a3b8;
+  --btn: #047857;
+  --btn-hover: #059669;
+  --accent-text: #34d399;
+}
+
+@layer base {
+  body {
+    background-color: #070b13;
+    color: #f1f5f9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Scrollbar for Luxury UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2a40;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2d3d5a;
+}
+
+/* ========================================================================== */
+/* LUXURY EXECUTIVE ANIMATION: MAHARAJA HOTEL BRAND IDENTITY                  */
+/* Crafted by Senior UI/UX Designer: Royal Gold Shimmer Sweep & Ambient Aura  */
+/* ========================================================================== */
+.maharaja-brand-animated {
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,
+    #ffffff 30%,
+    #fef08a 45%,
+    #fbbf24 50%,
+    #fef08a 55%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: maharajaRoyalShimmer 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  letter-spacing: -0.015em;
+  will-change: background-position, filter;
+  transition: transform 0.3s ease;
+}
+
+.maharaja-brand-animated:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.45));
+}
+
+@keyframes maharajaRoyalShimmer {
+  0%, 18% {
+    background-position: 150% 0;
+    filter: drop-shadow(0 0 0px rgba(251, 191, 36, 0));
+  }
+  50% {
+    background-position: -50% 0;
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.35));
+  }
+  82%, 100% {
+    background-position: -150% 0;
+    filter: drop-shadow(0 0 0px rgba(251, 191, 36, 0));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .maharaja-brand-animated {
+    animation: none !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Light Surface Optimization (e.g., Executive Printable Receipt) */
+#booking-confirmation-receipt .maharaja-brand-animated {
+  background: linear-gradient(
+    115deg,
+    #0f172a 0%,
+    #0f172a 35%,
+    #b88a2a 48%,
+    #d97706 52%,
+    #b88a2a 56%,
+    #0f172a 70%,
+    #0f172a 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media print {
+  .maharaja-brand-animated {
+    animation: none !important;
+    background: none !important;
+    -webkit-text-fill-color: #0f172a !important;
+    color: #0f172a !important;
+    filter: none !important;
+  }
+}
+
+/* ========================================================================== */
+/* MAHARAJA HOTEL LUXURY SPLASH-SCREEN INTRO ANIMATIONS                       */
+/* ========================================================================== */
+@keyframes horizonDraw {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0.85;
+  }
+}
+
+@keyframes emblemGlow {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: drop-shadow(0 0 0px rgba(251, 191, 36, 0));
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+    filter: drop-shadow(0 0 24px rgba(251, 191, 36, 0.5));
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.35));
+  }
+}
+
+@keyframes progressSweep {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+

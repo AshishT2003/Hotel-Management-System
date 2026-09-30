@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "1piunVg3iIYNSTtRq4hu0uaUSofC6jB5W5W6XbSy0gM=",
+  "Source": "your-hotel-app",
+  "BasePath": "_content/your-hotel-app",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

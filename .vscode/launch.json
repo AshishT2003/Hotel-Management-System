@@ -1,0 +1,16 @@
+﻿{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Hotel Management (.NET Framework)",
+      "type": "clr",
+      "request": "launch",
+      "preLaunchTask": "Build Hotel Management",
+      "program": "${workspaceFolder}/HotelManagement-master/HotelManagement/bin/Debug/Hotel_Manager.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}/HotelManagement-master/HotelManagement/bin/Debug",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    }
+  ]
+}

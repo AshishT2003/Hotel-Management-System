@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start SQL LocalDB",
+      "type": "shell",
+      "command": "sqllocaldb start MSSQLLocalDB",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Hotel Management",
+      "type": "process",
+      "command": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\MSBuild.exe",
+      "args": [
+        "${workspaceFolder}\\HotelManagement-master\\HotelManagement.sln",
+        "/p:Configuration=Debug"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile",
+      "dependsOn": ["Start SQL LocalDB"]
+    },
+    {
+      "label": "Run Hotel Management",
+      "type": "shell",
+      "command": "& '${workspaceFolder}\\HotelManagement-master\\HotelManagement\\bin\\Debug\\Hotel_Manager.exe'",
+      "dependsOn": ["Build Hotel Management"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run React Frontend (Vite)",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

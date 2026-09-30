@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # React 18 Frontend
+  client:
+    build:
+      context: ./src/client
+      dockerfile: Dockerfile
+    container_name: hotel-client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+    networks:
+      - hotel-network
+
+  # ASP.NET Core 8 Web API
+  server:
+    build:
+      context: ./src/server
+      dockerfile: Dockerfile
+    container_name: hotel-server
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=frontend_reservation;User Id=sa;Password=StrongPassword123!;TrustServerCertificate=True;
+      - Jwt__Key=GrandHorizonLuxuryHotelSuperSecretJwtKey2026!
+      - Jwt__Issuer=GrandHorizonHotel
+      - Jwt__Audience=GrandHorizonHotelApp
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - hotel-network
+
+  # SQL Server
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: hotel-db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=StrongPassword123!
+    volumes:
+      - ./infra/database:/var/opt/mssql/backup
+      - sqlserver-data:/var/opt/mssql/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'StrongPassword123!' -C -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - hotel-network
+
+volumes:
+  sqlserver-data:
+    driver: local
+
+networks:
+  hotel-network:
+    driver: bridge
